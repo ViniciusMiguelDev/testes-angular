@@ -1,0 +1,47 @@
+<h1>Gerenciador de Usuários 🧑‍💻</h1>
+
+<!-- Campo para buscar usuário -->
+<input
+  type="text"
+  [(ngModel)]="searchTerm"
+  (input)="updateFilteredUsers()"
+  placeholder="Buscar usuário"
+/>
+
+<!-- Lista de usuários -->
+<div *ngFor="let user of filteredUsers; let i = index" class="user-card">
+  <p><strong>Nome:</strong> {{ user.name }}</p>
+  <p><strong>Email:</strong> {{ user.email }}</p>
+  <button (click)="startEdit(i)">Editar</button>
+  <button (click)="deleteUser(i)">Excluir</button>
+</div>
+
+<!-- Formulário para adicionar novo usuário -->
+<h2>Novo Usuário</h2>
+<input
+  type="text"
+  [(ngModel)]="newName"
+  placeholder="Nome"
+/>
+<input
+  type="email"
+  [(ngModel)]="newEmail"
+  placeholder="Email"
+/>
+<button (click)="addUser()">Adicionar</button>
+
+<!-- Formulário para editar usuário -->
+<div *ngIf="editIndex >= 0" class="edit-form">
+  <h2>Editar Usuário</h2>
+  <input
+    type="text"
+    [(ngModel)]="editName"
+    placeholder="Novo nome"
+  />
+  <input
+    type="email"
+    [(ngModel)]="editEmail"
+    placeholder="Novo email"
+  />
+  <button (click)="updateUser()">Atualizar</button>
+</div>
